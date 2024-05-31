@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <header className='bg-cover bg-center' 
     style={{backgroundImage: `linear-gradient(to bottom, rgb(0 0 0 / 70%), rgb(0 0 0 / 90%)),  url('${bg}')`, backgroundSize:'100%', }}>
-      <div className="container">
+      <div className="container mx-auto" >
         <Navigation />
         <SearchBox />
         <FollowUs />
