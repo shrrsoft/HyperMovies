@@ -8,22 +8,22 @@ const [isOpenMenu, setIsOpenMenu] = useState(false)
 
   return (
     <>
-    <nav className='flex items-center py-6 md:py-8'>
-       <div className='flex items-center gap-14'>
+    <nav className='flex items-baseline py-6 md:py-8'>
+       <div className='flex items-baseline gap-14'>
             <div>
-            <h1 className='text-2xl mr-12 md:mr-4'>Hyper<span className='text-rose-500'>Movies</span></h1>
-            <p className="text-xs ml-8 text-slate-500">Reviwe Movies</p>
+            <h1 className='mr-12 md:mr-4 text-3xl'>Hyper<span className='text-rose-500'>Movies</span></h1>
+            <p className="ml-8 text-sm text-slate-400">Reviwe Movies</p>
             </div>
         <ul className='hidden md:flex md:gap-4 gap-6 uppercase flex-wrap '>
-            <li><a href="#">Movies</a></li>
-            <li><a href="#">TV Shows</a></li>
-            <li><a href="#">People</a></li>
-            <li><a href="#">More</a></li>
+            <li><a className='hover:text-white' href="#">Movies</a></li>
+            <li><a className='hover:text-white' href="#">TV Shows</a></li>
+            <li><a className='hover:text-white' href="#">People</a></li>
+            <li><a className='hover:text-white' href="#">More</a></li>
         </ul>
        </div>
        <div className='ml-auto'>
         <ul className='hidden md:flex md:flex-col-reverse md:items-center lg:flex-row gap-8 uppercase '>
-            <li><a href="#">login</a></li>
+            <li><a className='hover:text-white ' href="#">login</a></li>
             <li><a className='text-white bg-rose-600 hover:bg-rose-500 px-6 py-2.5 rounded-2xl'  href="#">sign up</a></li>
         </ul>
        </div>
@@ -43,7 +43,7 @@ const [isOpenMenu, setIsOpenMenu] = useState(false)
         </ul>
         <div className='pt-6 border-t-2 border-slate-500'>
           <ul className='flex items-center justify-center gap-4'>
-              <li><a href="#">login</a></li>
+              <li><a  href="#">Login</a></li>
               <li><a className='text-white bg-rose-600 hover:bg-rose-500 px-6 py-2.5 rounded-2xl'  href="#">sign up</a></li>
           </ul>
         </div>

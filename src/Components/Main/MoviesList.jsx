@@ -5,7 +5,7 @@ export default function MoviesList() {
   return (
     <>
     <div>
-    <swiper-container class="mySwiper" Navigation="true"  loop="true" autoplay="true"
+    <swiper-container  loop="true" autoplay="true" 
                           breakpoints={
                             JSON.stringify({
 
@@ -20,8 +20,8 @@ export default function MoviesList() {
                                 },
                               
                                 1024: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 40,
+                                    slidesPerView: 5,
+                                    spaceBetween: 10,
                                 }
                             }) 
                           }
