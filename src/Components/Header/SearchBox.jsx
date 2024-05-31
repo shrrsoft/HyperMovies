@@ -6,7 +6,7 @@ import React from 'react'
 
 export default function SearchBox() {
   return (
-    <section className=" mt-12">
+    <section className=" mt-7">
         <div className="relative">
              <input type="text" 
              placeholder='search movies and TV Shows'

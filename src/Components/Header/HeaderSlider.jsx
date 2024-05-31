@@ -1,13 +1,12 @@
 import { register } from 'swiper/element/bundle';
 register();
-import React, { useState } from 'react'
 
 
 
 export default function HeaderSlider({setBg}) {
 
   return (
-    <div className="mt-12 text-center" >
+    <div className="mt-8 text-center" >
 
         <swiper-container class="mySwiper" Navigation="true"  loop="true" autoplay="true"
                           breakpoints={
