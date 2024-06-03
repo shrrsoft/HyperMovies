@@ -1,46 +1,55 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { register } from 'swiper/element/bundle';
+import { apiKey, baseURL, imgBaseURL } from '../../apiConfig';
 register();
 
 
 
 export default function HeaderSlider({setBg}) {
+  const [movies, setMovies] = useState([])
+  const defBg = "src/assets/background image/background.jpg"
 
-  return (
-    <div className="mt-8 text-center" >
+  async function loadMovies() {
+    const {data} = await axios.get(`${baseURL}/popular?api_key=${apiKey}`)
+    setMovies(data.results)    
+  }
 
-        <swiper-container class="mySwiper" Navigation="true"  loop="true" autoplay="true"
-                          breakpoints={
-                            JSON.stringify({
+  useEffect(()=>{
+    loadMovies()
+  }, [])
+  
+  function posterImage (path, size="w300") {
+    return (`${imgBaseURL}/${size}${path}`)
+ }
 
-                                640:{
-                                    slidesPerView: 2,
-                                    spaceBetween: 20,
-                                },
-                              
-                                768: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 40,
-                                },
-                              
-                                1024: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 50,
-                                }
-                            }) 
-                          }
-                                            >
-            <swiper-slide><img className='mx-auto' onMouseOver = {(e) => setBg('src/assets/slider images/1.jpg')} onMouseLeave={(e) =>setBg('src/assets/background image/background.jpg')} src="/src/assets/slider images/1.jpg" alt="" /></swiper-slide>
-            <swiper-slide><img className='mx-auto' onMouseOver = {(e) => setBg('src/assets/slider images/2.jpg')} onMouseLeave={(e) =>setBg('src/assets/background image/background.jpg')} src="/src/assets/slider images/2.jpg" alt="" /></swiper-slide>
-            <swiper-slide><img className='mx-auto' onMouseOver = {(e) => setBg('src/assets/slider images/3.jpg')} onMouseLeave={(e) =>setBg('src/assets/background image/background.jpg')} src="/src/assets/slider images/3.jpg" alt="" /></swiper-slide>
-            <swiper-slide><img className='mx-auto' onMouseOver = {(e) => setBg('src/assets/slider images/4.jpg')} onMouseLeave={(e) =>setBg('src/assets/background image/background.jpg')} src="/src/assets/slider images/4.jpg" alt="" /></swiper-slide>
-            <swiper-slide><img className='mx-auto' onMouseOver = {(e) => setBg('src/assets/slider images/5.jpg')} onMouseLeave={(e) =>setBg('src/assets/background image/background.jpg')} src="/src/assets/slider images/5.jpg" alt="" /></swiper-slide>
-            <swiper-slide><img className='mx-auto' onMouseOver = {(e) => setBg('src/assets/slider images/6.jpg')} onMouseLeave={(e) =>setBg('src/assets/background image/background.jpg')} src="/src/assets/slider images/6.jpg" alt="" /></swiper-slide>
-            <swiper-slide><img className='mx-auto' onMouseOver = {(e) => setBg('src/assets/slider images/7.jpg')} onMouseLeave={(e) =>setBg('src/assets/background image/background.jpg')} src="/src/assets/slider images/7.jpg" alt="" /></swiper-slide>
+ const breakpoints=JSON.stringify({ 
+
+      640:{
+          slidesPerView: 2,
+          spaceBetween: 20,
+      },
+    
+      768: {
+          slidesPerView: 3,
+          spaceBetween: 40,
+      },
+    
+      1024: {
+          slidesPerView: 4,
+          spaceBetween: 50,
+      }
+  }) 
+
+  return (  
+    <div className="mt-8 text-center" >    
+         <swiper-container class="mySwiper" Navigation="true"  loop="true" autoplay="true"breakpoints={breakpoints}>
+            {movies.map((movie)=>(
+              <swiper-slide key={movie.id}>
+                <img className='mx-auto' onMouseOver={(e)=>setBg(posterImage(movie.poster_path))} onMouseLeave={(e)=>setBg(defBg)} src={(posterImage(movie.poster_path))} alt={movie.title} />
+              </swiper-slide> ))}
         </swiper-container>
+
     </div>
   )
 }
-
-
-
-        

@@ -1,39 +1,55 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MoviesCard from '../Movies/MoviesCard'
+import axios from 'axios'
+import { apiKey, baseURL, imgBaseURL } from '../../apiConfig'
 
 export default function MoviesList() {
+
+  const [movies, setMovies] = useState([])
+
+  async function loadMovies() {
+    const {data} = await axios.get(`${baseURL}/popular?api_key=${apiKey}`)
+    setMovies(data.results)    
+  }
+
+  useEffect(()=>{
+    loadMovies()
+  }, [])
+   
+  function posterImage (path, size="w300") {
+    return (`${imgBaseURL}/${size}${path}`)
+ }
+
+
+ const breakpoints=JSON.stringify({ 
+
+  640:{
+    slidesPerView: 2,
+    spaceBetween: 20,
+},
+
+768: {
+    slidesPerView: 3,
+    spaceBetween: 40,
+},
+
+1024: {
+    slidesPerView: 5,
+    spaceBetween: 10,
+}
+}) 
+
+
+
   return (
     <>
     <div>
-    <swiper-container  loop="true" autoplay="true" 
-                          breakpoints={
-                            JSON.stringify({
-
-                                640:{
-                                    slidesPerView: 2,
-                                    spaceBetween: 20,
-                                },
-                              
-                                768: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 40,
-                                },
-                              
-                                1024: {
-                                    slidesPerView: 5,
-                                    spaceBetween: 10,
-                                }
-                            }) 
-                          }
-                                            >
-            <swiper-slide><MoviesCard movieName={"Jaws"} imgSrc={"/src/assets/slider images/5.jpg"} point={8.1} /></swiper-slide>
-            <swiper-slide><MoviesCard movieName={"Iron Man"} imgSrc={"/src/assets/slider images/6.jpg"} point={7.8} /></swiper-slide>
-            <swiper-slide><MoviesCard movieName={"Spider Man"} imgSrc={"/src/assets/slider images/7.jpg"} point={8.3} /></swiper-slide>
-            <swiper-slide><MoviesCard movieName={"The Dark Knight"} imgSrc={"/src/assets/slider images/1.jpg"} point={9.0} /></swiper-slide>
-            <swiper-slide><MoviesCard movieName={"Thief"} imgSrc={"/src/assets/slider images/2.jpg"} point={7.4} /></swiper-slide>
-            <swiper-slide><MoviesCard movieName={"LALA LAND"} imgSrc={"/src/assets/slider images/3.jpg"} point={8.7} /></swiper-slide>
-            <swiper-slide><MoviesCard movieName={"Squid Game"} imgSrc={"/src/assets/slider images/4.jpg"} point={8.9} /></swiper-slide>
-        </swiper-container>
+      <swiper-container  loop="true" autoplay="false" breakpoints={breakpoints}>
+        {movies.map((movie)=>(
+          <swiper-slide  key={movie.id}>
+            <MoviesCard movieName={movie.title} imgSrc={(posterImage(movie.poster_path))} point={movie.vote_average.toFixed(1)} />
+          </swiper-slide>))}
+      </swiper-container>
     </div>
     </>
   )
