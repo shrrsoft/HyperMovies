@@ -6,6 +6,7 @@ import Tv from "./Components/pages/Tv";
 import People from "./Components/pages/People";
 import Login from "./Components/pages/Login";
 import Signup from "./Components/pages/Signup";
+import Movie from "./Components/pages/Movie";
 
 export const router = createBrowserRouter([
     {
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
             {
                 path: '/movies',
                 element : <Movies />
+            },  
+            {
+                path: '/movie/:id',
+                element : <Movie />
             },  
             {
                 path: '/tv',

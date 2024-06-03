@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import MoviesCard from '../Movies/MoviesCard'
 import axios from 'axios'
-import { apiKey, baseURL, imgBaseURL } from '../../apiConfig'
+import { apiKey, baseURL } from '../../apiConfig'
 
 export default function MoviesList() {
 
   const [movies, setMovies] = useState([])
-
   async function loadMovies() {
     const {data} = await axios.get(`${baseURL}/popular?api_key=${apiKey}`)
     setMovies(data.results)    
@@ -16,10 +15,6 @@ export default function MoviesList() {
     loadMovies()
   }, [])
    
-  function posterImage (path, size="w300") {
-    return (`${imgBaseURL}/${size}${path}`)
- }
-
 
  const breakpoints=JSON.stringify({ 
 
@@ -40,17 +35,17 @@ export default function MoviesList() {
 }) 
 
 
-
   return (
     <>
     <div>
-      <swiper-container  loop="true" autoplay="true" breakpoints={breakpoints}>
+      <swiper-container   autoplay="true" loop="true" breakpoints={breakpoints}>
         {movies.map((movie)=>(
           <swiper-slide  key={movie.id}>
-            <MoviesCard movieName={movie.title} imgSrc={(posterImage(movie.poster_path))} point={movie.vote_average.toFixed(1)} />
+            <MoviesCard movie={movie} />
           </swiper-slide>))}
       </swiper-container>
     </div>
     </>
   )
 }
+

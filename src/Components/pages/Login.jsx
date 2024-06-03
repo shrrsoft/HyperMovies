@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Login() {
   return (
-    <div>
+    <div className='container'>
       <h1>login page</h1>
     </div>
   )

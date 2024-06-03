@@ -5,6 +5,9 @@ import { Link, NavLink } from 'react-router-dom'
 
 
 const menuItems = [
+  {path:'/',
+   text: 'HOME'
+  },
   {path:'/Movies',
    text: 'MOVIES'
   },
@@ -14,7 +17,7 @@ const menuItems = [
    {path: '/People',
     text: 'PEOPLE'
    },
-   {path: '/',
+   {path: '/More',
     text: 'MORE'
    }
 ]
@@ -29,7 +32,7 @@ function activeClass({isActive}) {
 
   return (
     <>
-    <nav className='flex items-baseline py-6 md:py-8'>
+    <nav className='flex items-baseline pt-6 pb-0 md:pt-8'>
        <div className='flex items-baseline gap-14'>
             <Link to="/">
             <h1 className='mr-12 md:mr-4 text-3xl'>Hyper<span className='text-rose-500'>Movies</span></h1>

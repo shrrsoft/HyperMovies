@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { register } from 'swiper/element/bundle';
 import { apiKey, baseURL, imgBaseURL } from '../../apiConfig';
+import { Link } from 'react-router-dom';
 register();
 
 
@@ -42,14 +43,14 @@ export default function HeaderSlider({setBg}) {
   }) 
 
   return (  
-    <div className="mt-8 text-center" >    
-         <swiper-container class="mySwiper" Navigation="true"  loop="true" autoplay="true"breakpoints={breakpoints}>
+      <div className="mt-8 text-center" >    
+         <swiper-container class="mySwiper" Navigation="true" loop="true"  autoplay="true"breakpoints={breakpoints}>
             {movies.map((movie)=>(
               <swiper-slide key={movie.id}>
-                <img className='mx-auto' onMouseOver={(e)=>setBg(posterImage(movie.poster_path))} onMouseLeave={(e)=>setBg(defBg)} src={(posterImage(movie.poster_path))} alt={movie.title} />
+                <Link to={`/movie/${movie.id}`}><img className='mx-auto' onMouseOver={(e)=>setBg(posterImage(movie.poster_path))} onMouseLeave={(e)=>setBg(defBg)} src={(posterImage(movie.poster_path))} alt={movie.title} />
+                </Link>
               </swiper-slide> ))}
         </swiper-container>
-
-    </div>
+      </div>
   )
 }
