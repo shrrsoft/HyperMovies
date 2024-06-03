@@ -1,8 +1,8 @@
 import React from 'react'
-import MoviesList from './MoviesList'
-import MainMenu from './MainMenu'
+import MoviesList from '../Main/MoviesList'
+import MainMenu from '../Main/MainMenu'
 
-export default function Main() {
+export default function Home() {
   return (
     <div className="container mx-auto">
       <MainMenu title1={'Movies'} title2={'Upcoming'} title3={'Now Playing'} title4={'Popular'} title5={'Top rated'}  />

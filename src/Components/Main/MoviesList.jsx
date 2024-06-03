@@ -44,7 +44,7 @@ export default function MoviesList() {
   return (
     <>
     <div>
-      <swiper-container  loop="true" autoplay="false" breakpoints={breakpoints}>
+      <swiper-container  loop="true" autoplay="true" breakpoints={breakpoints}>
         {movies.map((movie)=>(
           <swiper-slide  key={movie.id}>
             <MoviesCard movieName={movie.title} imgSrc={(posterImage(movie.poster_path))} point={movie.vote_average.toFixed(1)} />
