@@ -2,10 +2,12 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { apiKey, urlAuth } from "../apiConfig";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext();
 
 export default function UserProvider({ children }) {
+  const navigate = useNavigate();
   const [user, SetUser] = useState({});
   const [session, setSession] = useState(() => localStorage.getItem("session"));
 
@@ -20,6 +22,10 @@ export default function UserProvider({ children }) {
       getUserData();
     }
   }, [session]);
+
+  function logout() {
+    SetUser({}), setSession(null), localStorage.clear();
+  }
 
   async function login(username, password) {
     try {
@@ -37,13 +43,15 @@ export default function UserProvider({ children }) {
       );
       setSession(session.data.session_id);
       localStorage.setItem("session", session.data.session_id);
+
+      navigate("/", { replace: true });
     } catch {
       toast.error("invalid User");
     }
   }
 
   return (
-    <UserContext.Provider value={{ user, login, session }}>
+    <UserContext.Provider value={{ user, login, session, logout }}>
       {children}
     </UserContext.Provider>
   );

@@ -15,7 +15,7 @@ const menuItems = [
 export default function Navigation() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
-  const { user } = useContext(UserContext);
+  const { user, logout } = useContext(UserContext);
 
   function activeClass({ isActive }) {
     return isActive ? "text-rose-400" : "hover:text-white";
@@ -27,7 +27,7 @@ export default function Navigation() {
         <div className="flex items-baseline gap-14">
           <Link to="/">
             <h1 className="mr-12 md:mr-4 text-3xl">
-              Hyper<span className="text-rose-500">Movies</span>
+              Maani<span className="text-rose-500">Movies</span>
             </h1>
             <p className="ml-8 text-sm text-slate-400">Reviwe Movies</p>
           </Link>
@@ -41,9 +41,21 @@ export default function Navigation() {
             ))}
           </ul>
         </div>
-        <div className="ml-auto hidden md:block">
+        <div className="ml-auto hidden md:flex gap-6">
           {Object.keys(user).length ? (
-            <div className="">{user.name}</div>
+            <>
+              <div className="">{user.name}</div>
+              <ul>
+                <li>
+                  <NavLink
+                    className="border-2 px-3 py-1.5 rounded-lg  hover:bg-slate-400/60 hover:text-white  "
+                    to="/login"
+                    onClick={logout}>
+                    Logout
+                  </NavLink>
+                </li>
+              </ul>
+            </>
           ) : (
             <ul className="hidden md:flex md:flex-col-reverse md:items-center lg:flex-row gap-8 uppercase ">
               <li>
@@ -53,7 +65,7 @@ export default function Navigation() {
               </li>
               <li>
                 <NavLink
-                  className="text-white bg-rose-600 hover:bg-rose-500 px-6 py-2.5 rounded-2xl"
+                  className="text-white border-2 border-slate-400/60 bg-rose-600/60 hover:bg-rose-500 hover:border-slate-400 px-4 py-1.5 rounded-xl"
                   to="/signup">
                   sign up
                 </NavLink>
@@ -71,7 +83,7 @@ export default function Navigation() {
         className={`md:hidden mx-auto bg-slate-900/70 rounded-2xl  ${
           isOpenMenu ? " h-full pt-4 pb-8 " : "h-0 p-0 overflow-auto"
         }`}>
-        <div className="pt-4 border-t-2 border-slate-500 mx-auto w-1/2">
+        <div className="pt-4 border-t-2 border-slate-500 mx-auto ">
           <ul className="flex flex-col justify-center items-center pb-4 gap-4">
             {menuItems.map((item) => (
               <li key={item.path}>
@@ -86,18 +98,29 @@ export default function Navigation() {
           </ul>
           <div className="pt-6 border-t-2 border-slate-500">
             {Object.keys(user).length ? (
-              <div className="text-center ">{user.name}</div>
+              <div className="flex items-center justify-center gap-4 ">
+                <div className="text-center ">{user.name}</div>
+                <NavLink
+                  className="border-2 px-3 py-1 rounded-lg w-20  hover:bg-slate-400/60 hover:text-white  "
+                  to="/login"
+                  onClick={logout}>
+                  Logout
+                </NavLink>
+              </div>
             ) : (
               <ul className="flex items-center justify-center gap-4">
                 <li>
-                  <NavLink onClick={() => setIsOpenMenu(false)} to="/login">
+                  <NavLink
+                    className="hover:text-white"
+                    onClick={() => setIsOpenMenu(false)}
+                    to="/login">
                     Login
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
                     onClick={() => setIsOpenMenu(false)}
-                    className="text-white bg-rose-600 hover:bg-rose-500 px-6 py-2.5 rounded-2xl"
+                    className="text-white border-2 border-slate-400/60 bg-rose-600/60 hover:bg-rose-500 hover:border-slate-400 px-4 py-1.5 rounded-xl"
                     to="/signup">
                     sign up
                   </NavLink>

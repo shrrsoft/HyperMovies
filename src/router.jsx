@@ -7,10 +7,16 @@ import People from "./Components/pages/People";
 import Login from "./Components/pages/Login";
 import Signup from "./Components/pages/Signup";
 import Movie from "./Components/pages/Movie";
+import UserProvider from "./Context/UserContext";
+import More from "./Components/pages/More";
 
 export const router = createBrowserRouter([
   {
-    element: <App />,
+    element: (
+      <UserProvider>
+        <App />
+      </UserProvider>
+    ),
     children: [
       {
         path: "/",
@@ -27,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: "/tv",
         element: <Tv />,
+      },
+      {
+        path: "/more",
+        element: <More />,
       },
       {
         path: "/people",
