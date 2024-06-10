@@ -15,7 +15,7 @@ export default function Person({ item }) {
           className="w-[4rem]"
           src={
             item.profile_path
-              ? `${imgBaseURL}/w45/${item.profile_path}`
+              ? `${imgBaseURL}/w45${item.profile_path}`
               : "src/assets/default profile.png"
           }
           alt={item.name}

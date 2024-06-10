@@ -2,9 +2,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Movie from "../Items/Movie";
-import Tv from "../Items/Tv";
-import Person from "../Items/Person";
+import MovieItem from "../Items/MovieItem";
+import TvItem from "../Items/TvItem";
+import PersonItem from "../Items/PersonItem";
 
 // async function searchMovie(query) {
 // setTimeout(async () => {
@@ -62,11 +62,11 @@ export default function SearchBox() {
   function showItem(item) {
     switch (item.media_type) {
       case "movie":
-        return <Movie key={item.id} item={item} />;
+        return <MovieItem key={item.id} item={item} />;
       case "tv":
-        return <Tv key={item.id} item={item} />;
+        return <TvItem key={item.id} item={item} />;
       case "person":
-        return <Person key={item.id} item={item} />;
+        return <PersonItem key={item.id} item={item} />;
     }
   }
 
