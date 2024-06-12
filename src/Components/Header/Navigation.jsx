@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
+import ProfileImg from "../ProfileImg";
 
 const menuItems = [
   { path: "/", text: "HOME" },
   { path: "/Movies", text: "MOVIES" },
-  { path: "/tv", text: "TV Shoews" },
+  { path: "/Tvs", text: "Tv" },
   { path: "/People", text: "PEOPLE" },
   { path: "/More", text: "MORE" },
 ];
@@ -15,7 +16,7 @@ const menuItems = [
 export default function Navigation() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
-  const { user, logout } = useContext(UserContext);
+  const { user, logout, userProfileImg } = useContext(UserContext);
 
   function activeClass({ isActive }) {
     return isActive ? "text-rose-400" : "hover:text-white";
@@ -41,10 +42,11 @@ export default function Navigation() {
             ))}
           </ul>
         </div>
-        <div className="ml-auto hidden md:flex gap-6">
+        <div className="ml-auto hidden md:flex gap-2 ">
           {Object.keys(user).length ? (
-            <>
-              <div className="">{user.name}</div>
+            <div className="flex items-baseline gap-4">
+              {/* <div className="">{user.name}</div> */}
+              <ProfileImg />
               <ul>
                 <li>
                   <NavLink
@@ -55,7 +57,7 @@ export default function Navigation() {
                   </NavLink>
                 </li>
               </ul>
-            </>
+            </div>
           ) : (
             <ul className="hidden md:flex md:flex-col-reverse md:items-center lg:flex-row gap-8 uppercase ">
               <li>

@@ -3,12 +3,15 @@ import App from "./App";
 import Home from "./Components/pages/Home";
 import Movies from "./Components/pages/Movies";
 import Tv from "./Components/pages/Tv";
+import Tvs from "./Components/pages/Tvs";
 import People from "./Components/pages/People";
 import Login from "./Components/pages/Login";
 import Signup from "./Components/pages/Signup";
 import Movie from "./Components/pages/Movie";
 import UserProvider from "./Context/UserContext";
 import More from "./Components/pages/More";
+import Profile from "./Components/pages/Profile";
+import Person from "./Components/pages/Person";
 
 export const router = createBrowserRouter([
   {
@@ -31,16 +34,24 @@ export const router = createBrowserRouter([
         element: <Movie />,
       },
       {
-        path: "/tv/:id",
-        element: <Tv />,
+        path: "/Tvs",
+        element: <Tvs />,
       },
       {
         path: "/more",
         element: <More />,
       },
       {
-        path: "/people/:id",
+        path: "/People",
         element: <People />,
+      },
+      {
+        path: "/Person/:id",
+        element: <Person />,
+      },
+      {
+        path: "/Tv/:id",
+        element: <Tv />,
       },
       {
         path: "/login",
@@ -49,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },

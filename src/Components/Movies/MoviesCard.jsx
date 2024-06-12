@@ -13,12 +13,12 @@ export default function MoviesCard({ movie }) {
 
   return (
     <Link to={`/movie/${movie.id}`}>
-      <div className="w-fit bg-cover relative m-5 text-slate-300 bg-gradient-to-b from-slate-900  to-slate-800 mx-auto rounded-3xl p-1.5 ">
+      <div className="w-fit bg-cover relative m-5 text-slate-300 bg-gradient-to-b from-slate-900  to-slate-800 mx-auto rounded-md p-1.5 ">
         <div
           onMouseMove={(e) => SetOpacityImg("opacity-20")}
           onMouseLeave={(e) => SetOpacityImg("")}>
           <img
-            className={`h-80  transition-all mx-auto delay-50 duration-500 rounded-t-2xl ${opacityImg}`}
+            className={`h-80  transition-all mx-auto delay-50 duration-500 rounded-sm ${opacityImg}`}
             src={posterImage(movie.poster_path)}
             alt=""
           />

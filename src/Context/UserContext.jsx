@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { apiKey, urlAuth } from "../apiConfig";
+import { apiKey, imgBaseURL, urlAuth } from "../apiConfig";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
@@ -17,11 +17,14 @@ export default function UserProvider({ children }) {
     );
     SetUser(data);
   }
+
   useEffect(() => {
     if (session) {
       getUserData();
     }
   }, [session]);
+
+  const UserProfileImg = `${imgBaseURL}/original${user?.avatar?.tmdb?.avatar_path}`;
 
   function logout() {
     SetUser({}), setSession(null), localStorage.clear();
@@ -44,14 +47,15 @@ export default function UserProvider({ children }) {
       setSession(session.data.session_id);
       localStorage.setItem("session", session.data.session_id);
 
-      navigate("/", { replace: true });
+      navigate("/profile", { replace: true });
     } catch {
       toast.error("invalid User");
     }
   }
 
   return (
-    <UserContext.Provider value={{ user, login, session, logout }}>
+    <UserContext.Provider
+      value={{ user, login, session, logout, UserProfileImg }}>
       {children}
     </UserContext.Provider>
   );
