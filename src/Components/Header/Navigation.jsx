@@ -101,7 +101,7 @@ export default function Navigation() {
           <div className="pt-6 border-t-2 border-slate-500">
             {Object.keys(user).length ? (
               <div className="flex items-center justify-center gap-4 ">
-                <div className="text-center ">{user.name}</div>
+                <ProfileImg />
                 <NavLink
                   className="border-2 px-3 py-1 rounded-lg w-20  hover:bg-slate-400/60 hover:text-white  "
                   to="/login"

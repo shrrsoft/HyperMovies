@@ -10,3 +10,7 @@ body{
 :root {
     --swiper-navigation-color: rgb(225 29 72);
   }
+
+swiper-slide {
+    width: 5rem;
+}
