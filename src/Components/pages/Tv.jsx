@@ -21,7 +21,9 @@ export default function Tv() {
   }
 
   async function loadingMovie() {
-    const { data } = await axios.get(`${baseURL}/${id}?api_key=${apiKey}`);
+    const { data } = await axios.get(
+      `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}`
+    );
     setTv(data);
   }
 
@@ -34,7 +36,7 @@ export default function Tv() {
   }
 
   return (
-    <div className="container my-6 flex items-center">
+    <div className="container my-6 flex items-center relative top-[-32rem] mx-auto">
       <img src={posterImage(tv.poster_path)} alt={tv.name} />
       <div className="m-5 flex flex-col gap-3 items-center">
         <h1 className="text-lg">{tv.name}</h1>

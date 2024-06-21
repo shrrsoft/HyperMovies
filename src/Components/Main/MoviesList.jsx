@@ -54,7 +54,7 @@ export default function MoviesList({ type, activeTab }) {
         <swiper-container autoplay="true" loop="true" breakpoints={breakpoints}>
           {movies.map((movie) => (
             <swiper-slide key={movie.id} className="w-1">
-              <MoviesCard movie={movie} />
+              <MoviesCard type={type} movie={movie} />
             </swiper-slide>
           ))}
         </swiper-container>

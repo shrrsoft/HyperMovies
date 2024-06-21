@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { imgBaseURL } from "../../apiConfig";
 
-export default function MoviesCard({ movie }) {
+export default function MoviesCard({ movie, type }) {
   const [opacityImg, SetOpacityImg] = useState("" & false);
 
   function posterImage(path, size = "w300") {
@@ -12,7 +12,7 @@ export default function MoviesCard({ movie }) {
   }
 
   return (
-    <Link to={`/movie/${movie.id}`}>
+    <Link to={`/${type}/${movie.id}`}>
       <div className=" w-fit mx-auto bg-cover relative m-5 text-slate-300 bg-gradient-to-b from-slate-900  to-slate-800 rounded-md p-0.5 ">
         <div
           onMouseMove={(e) => SetOpacityImg("opacity-20")}

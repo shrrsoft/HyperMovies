@@ -35,7 +35,7 @@ export default function People() {
     return `${imgBaseURL}/${size}${path}`;
   }
   https: return (
-    <div className="container my-6 flex items-center">
+    <div className="container my-6 flex items-center relative top-[-32rem] mx-auto">
       <img src={`${imgBaseURL}/w300${people.profile_path}`} alt={people.name} />
       <div className="m-5 flex flex-col gap-3 items-center">
         <h1 className="text-lg">{people.name}</h1>
