@@ -33,7 +33,6 @@ export default function UserProvider({ children }) {
     axios
       .request(optionsFavoriteMovies)
       .then(function (response) {
-        console.log(response.data.results);
         setFavoriteMovies(response.data.results);
         console.log(favoriteMovies);
       })
